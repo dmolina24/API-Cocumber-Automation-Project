@@ -14,17 +14,16 @@ import org.junit.Assert;
 import java.util.List;
 import java.util.Map;
 
-public class ClientSteps {
+public class ClientSteps{
     private static final Logger logger = LogManager.getLogger(ClientSteps.class);
 
     private final ClientRequest clientRequest = new ClientRequest();
-
+    private Client client;
     private Response response;
-    private Client   client;
 
     @Given("there are registered clients in the system")
     public void thereAreRegisteredClientsInTheSystem() {
-        logger.info("there are registered clients in the system");
+
         response = clientRequest.getClients();
         logger.info(response.jsonPath()
                             .prettify());
@@ -37,6 +36,11 @@ public class ClientSteps {
             logger.info(response.statusCode());
             Assert.assertEquals(201, response.getStatusCode());
         }
+    }
+
+    @Then("the response should have a status code of {int}")
+    public void theResponseShouldHaveAStatusCodeOf(int statusCode) {
+        Assert.assertEquals(statusCode, response.getStatusCode());
     }
 
     @Given("I have a client with the following details:")
@@ -110,16 +114,19 @@ public class ClientSteps {
     @Then("validates the response with client JSON schema")
     public void userValidatesResponseWithClientJSONSchema() {
         logger.info("validates the response with client JSON schema");
+
+        String path = "schemas/clientSchema.json";
+        Assert.assertTrue(clientRequest.validateSchema(response, path));
+        logger.info("Successfully Validated schema from Client Object ");
     }
 
     @Then("validates the response with client list JSON schema")
     public void userValidatesResponseWithClientListJSONSchema() {
-        logger.info("validates the response with client list JSON schema");
+
+        String path = "schemas/clientListSchema.json";
+        Assert.assertTrue(clientRequest.validateSchema(response, path));
+        logger.info("Successfully Validated schema from Client List");
     }
 
-    @Then("the response should have a status code of {int}")
-    public void theResponseShouldHaveAStatusCodeOf(int statusCode) {
-        logger.info("the response should have a status code of " + statusCode);
-        Assert.assertEquals(statusCode, response.getStatusCode());
-    }
+
 }

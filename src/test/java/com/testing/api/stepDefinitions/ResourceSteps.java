@@ -7,12 +7,11 @@ import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ResourceSteps {
+public class ResourceSteps extends BaseSteps {
     private static final Logger logger = LogManager.getLogger(ClientSteps.class);
 
     private final ClientRequest clientRequest = new ClientRequest();
 
-    private Response response;
     private Client client;
 
     @Given("there are registered resources in the system")

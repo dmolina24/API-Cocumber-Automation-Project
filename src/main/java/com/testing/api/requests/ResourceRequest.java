@@ -1,6 +1,7 @@
 package com.testing.api.requests;
 import com.google.gson.Gson;
 import com.testing.api.models.Resource;
+import com.testing.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +12,7 @@ public class ResourceRequest extends BaseRequest{
     private String endpoint;
 
     public Response getResources(){
-        endpoint = "";
+        endpoint = String.format(Constants.URL, Constants.RESOURCES_PATH);
         return requestGet(endpoint, createBaseHeaders());
     }
 

@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.testing.api.models.Client;
 import com.testing.api.utils.Constants;
 import com.testing.api.utils.JsonFileReader;
+import io.cucumber.messages.types.Hook;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -14,8 +17,12 @@ import java.util.List;
 public class ClientRequest extends BaseRequest {
     private String endpoint;
 
+    /**
+     *
+     * @return Response
+     */
     public Response getClients() {
-        endpoint = "";
+        endpoint = String.format(Constants.URL, Constants.CLIENTS_PATH);
         return requestGet(endpoint, createBaseHeaders());
     }
 

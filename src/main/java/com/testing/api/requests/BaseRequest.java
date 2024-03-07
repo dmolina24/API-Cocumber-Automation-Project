@@ -17,7 +17,7 @@ public class BaseRequest {
     }
 
     /**
-     * This is a funtion to create a new element using rest assured
+     * This is a function to create a new element using rest assured
      * @param endpoint api url
      * @param headers a map of headers
      * @param body model object

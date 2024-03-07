@@ -1,0 +1,9 @@
+{
+  "name": "NewResource",
+  "trademark": "newTrademark",
+  "stock": 9,
+  "price": 9.99,
+  "description": "generic description",
+  "tags": "generic tags",
+  "Is_active": true
+}

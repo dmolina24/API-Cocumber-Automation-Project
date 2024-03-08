@@ -14,15 +14,17 @@ public class Hooks {
     @Before
     public void testStart(Scenario scenario) {
         logger.info("*****************************************************************************************");
-        logger.info("	Scenario: " + scenario.getName());
+        logger.info("	Start Scenario: " + scenario.getName());
         logger.info("*****************************************************************************************");
         RestAssured.baseURI = Constants.BASE_URL;
+        BaseSteps.response = null;
     }
 
     @After
     public void cleanUp(Scenario scenario){
         logger.info("*****************************************************************************************");
-        logger.info("   Scenario: "+ scenario.getName());
+        logger.info("   End Scenario: "+ scenario.getName());
         logger.info("*****************************************************************************************");
+        BaseSteps.response = null;
     }
 }

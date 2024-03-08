@@ -2,6 +2,7 @@ package com.testing.api.requests;
 import com.google.gson.Gson;
 import com.testing.api.models.Resource;
 import com.testing.api.utils.Constants;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.jetbrains.annotations.NotNull;

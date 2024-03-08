@@ -14,34 +14,28 @@ import org.junit.Assert;
 import java.util.List;
 import java.util.Map;
 
-public class ClientSteps{
-    private static final Logger logger = LogManager.getLogger(ClientSteps.class);
+public class ClientSteps extends BaseSteps{
 
     private final ClientRequest clientRequest = new ClientRequest();
     private Client client;
-    private Response response;
 
     @Given("there are registered clients in the system")
     public void thereAreRegisteredClientsInTheSystem() {
 
         response = clientRequest.getClients();
-        logger.info(response.jsonPath()
-                            .prettify());
+        //logger.info(response.jsonPath().prettify());
 
         Assert.assertEquals(200, response.getStatusCode());
 
         List<Client> clientList = clientRequest.getClientsEntity(response);
         if(clientList.isEmpty()){
             response = clientRequest.createDefaultClient();
-            logger.info(response.statusCode());
+           // logger.info(response.statusCode());
             Assert.assertEquals(201, response.getStatusCode());
         }
     }
 
-    @Then("the response should have a status code of {int}")
-    public void theResponseShouldHaveAStatusCodeOf(int statusCode) {
-        Assert.assertEquals(statusCode, response.getStatusCode());
-    }
+
 
     @Given("I have a client with the following details:")
     public void iHaveAClientWithTheFollowingDetails(DataTable clientData) {
@@ -68,7 +62,11 @@ public class ClientSteps{
 
     @When("I send a GET request to view all the clients")
     public void iSendAGETRequestToViewAllTheClient() {
-        logger.info("I send a GET request to view all the clients");
+        //logger.info("I send a GET request to view all the clients");
+
+        response = clientRequest.getClients();
+        //logger.info(response.jsonPath().prettify());
+        //logger.info(response.statusCode());
     }
 
     @When("I send a POST request to create a client")
@@ -127,6 +125,8 @@ public class ClientSteps{
         Assert.assertTrue(clientRequest.validateSchema(response, path));
         logger.info("Successfully Validated schema from Client List");
     }
+
+
 
 
 }

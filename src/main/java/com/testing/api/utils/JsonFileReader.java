@@ -32,6 +32,11 @@ public class JsonFileReader {
         return client;
     }
 
+    /**
+     * This method read a JSON file and deserialize the body into a list of clients
+     * @param jsonFileName json location path
+     * @return List of clients
+     */
     public List<Client> getClientsByJson(String  jsonFileName){
         List<Client> clients =  new ArrayList<>();
         try (Reader reader = new FileReader(jsonFileName)) {
@@ -44,6 +49,11 @@ public class JsonFileReader {
         return clients;
     }
 
+    /**
+     * This method read a JSON file and deserialize the body into a list of resources
+     * @param jsonFileName Json location path
+     * @return List of resources
+     */
     public List<Resource> getResourcesByJson(String jsonFileName){
         List<Resource> resources =  new ArrayList<>();
         try (Reader reader = new FileReader(jsonFileName)) {

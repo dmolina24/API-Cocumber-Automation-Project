@@ -7,8 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.junit.Assert;
 
 import java.util.List;
@@ -24,6 +23,7 @@ public class ClientSteps extends BaseSteps{
 
         response = clientRequest.getClients();
         logger.info(response.jsonPath().prettify());
+
         Assert.assertEquals(200, response.getStatusCode());
 
         List<Client> clientList = clientRequest.getClientsEntity(response);
@@ -40,7 +40,7 @@ public class ClientSteps extends BaseSteps{
 
     @Given("I have a client with the following details:")
     public void iHaveAClientWithTheFollowingDetails(DataTable clientData) {
-        //logger.info("I have a client with the following details:" + clientData);
+        logger.info("I have a client with the following details:" + clientData);
 
         Map<String, String > clientDataMap = clientData.asMaps().get(0);
 
@@ -66,13 +66,13 @@ public class ClientSteps extends BaseSteps{
         //logger.info("I send a GET request to view all the clients");
 
         response = clientRequest.getClients();
-        //logger.info(response.jsonPath().prettify());
-        //logger.info(response.statusCode());
+        logger.info(response.jsonPath().prettify());
+        logger.info(response.statusCode());
     }
 
     @When("I send a POST request to create a client")
     public void iSendAPOSTRequestToCreateAClient() {
-        //logger.info("I send a POST request to create a client");
+        logger.info("I send a POST request to create a client");
         response = clientRequest.createClient(client);
     }
 
@@ -114,7 +114,6 @@ public class ClientSteps extends BaseSteps{
     @Then("validates the response with client JSON schema")
     public void userValidatesResponseWithClientJSONSchema() {
         logger.info("validates the response with client JSON schema");
-
         String path = "schemas/clientSchema.json";
         Assert.assertTrue(clientRequest.validateSchema(response, path));
         logger.info("Successfully Validated schema from Client Object ");

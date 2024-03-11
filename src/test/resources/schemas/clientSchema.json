@@ -28,6 +28,8 @@
     "lastName",
     "country",
     "city",
+    "email",
+    "phone",
     "id"
   ]
 }

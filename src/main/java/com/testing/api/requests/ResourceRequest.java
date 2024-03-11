@@ -60,7 +60,6 @@ public class ResourceRequest extends BaseRequest{
         }
     }
 
-
     public List<Response> createDefaultsResources(){
         JsonFileReader jsonFile = new JsonFileReader();
         List<Resource> resources = jsonFile.getResourcesByJson(Constants.DEFAULT_RESOURCE_FILE_PATH);

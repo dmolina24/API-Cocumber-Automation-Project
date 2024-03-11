@@ -19,10 +19,6 @@ import java.util.stream.Collectors;
 public class ClientRequest extends BaseRequest {
     private String endpoint;
 
-    /**
-     *
-     * @return Response
-     */
     public Response getClients() {
         endpoint = String.format(Constants.URL, Constants.CLIENTS_PATH);
         return requestGet(endpoint, createBaseHeaders());

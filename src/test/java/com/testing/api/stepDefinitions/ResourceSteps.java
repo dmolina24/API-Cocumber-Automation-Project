@@ -43,8 +43,6 @@ public class ResourceSteps extends BaseSteps {
         response = resourceRequest.getResources();
     }
 
-
-
     @Given("I retrieve the details of the latest resource")
     public void retrieveLatestResourceDetails(){
 
@@ -76,7 +74,6 @@ public class ResourceSteps extends BaseSteps {
         logger.info("Successfully validated schema from resource");
     }
 
-
     @Then("the resource response should have the following details:")
     public void theResourceResponseShouldHaveTheFollowingDetails(DataTable expectedData) {
         logger.info("the response should have the following details:" + expectedData);
@@ -91,7 +88,6 @@ public class ResourceSteps extends BaseSteps {
         Assert.assertEquals(expectedDataMap.get("description"), resource.getDescription());
         Assert.assertEquals(expectedDataMap.get("tags"), resource.getTags());
         Assert.assertEquals(Boolean.parseBoolean(expectedDataMap.get("active")), resource.isActive());
-
     }
 
 }

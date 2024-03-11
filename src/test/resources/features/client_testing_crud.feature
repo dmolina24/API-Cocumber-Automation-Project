@@ -19,7 +19,7 @@ Feature: Client testing CRUD
     Scenario: Create a new client
         Given I have a client with the following details:
             | Name   | LastName   | Country     | City   | Email             | Phone          |
-            | Pedro  | Picapiedra | Nunca Jamas | Narnia | pedro@gmail.com   | 123-456-7890   |
+            | Maria  | Picapiedra | Nunca Jamas | Narnia | pedro@gmail.com   | 123-456-7890   |
         When I send a POST request to create a client
         Then the response should have a status code of 201
         And the response should include the details of the created client
@@ -38,12 +38,12 @@ Feature: Client testing CRUD
             "price": 99.99,
             "description": "description",
             "tags": "NewTag",
-            "is_active": True
+            "active": True
         }
         """
         Then the response should have a status code of 200
-        And the response should have the following details:
-            | name | trademark | stock | price | description | tags | is_active |
-            | <name> | <NewTrademark> | 1000 | 99.99 | <New resource description | <NewTag> | <True> |
+        And the resource response should have the following details:
+            | name    | trademark    | stock | price | description | tags   | active |
+            | NewName | NewTradeMark | 1000  | 99.99 | description | NewTag | True   |
         And validates the response with the resource JSON schema
 

@@ -25,12 +25,15 @@ public class ClientSteps extends BaseSteps{
         response = clientRequest.getClients();
         logger.info(response.jsonPath().prettify());
         Assert.assertEquals(200, response.getStatusCode());
+
         List<Client> clientList = clientRequest.getClientsEntity(response);
 
         if(clientList.isEmpty()){
             List<Response> responses = clientRequest.createDefaultsClients();
             logger.info(responses);
-            responses.parallelStream().forEach( response -> {Assert.assertEquals(201, response.getStatusCode());});
+            responses.parallelStream().forEach( response -> {
+                Assert.assertEquals(201, response.getStatusCode());
+            });
         }
     }
 
@@ -50,7 +53,7 @@ public class ClientSteps extends BaseSteps{
                         .phone(clientDataMap.get("Phone"))
                         .build();
 
-        //logger.info("Client mapped: " + client);
+        logger.info("Client mapped: " + client);
     }
 
     @When("I retrieve the details of the client with ID {string}")
@@ -84,8 +87,8 @@ public class ClientSteps extends BaseSteps{
     }
 
 
-    @Then("the response should have the following details:")
-    public void theResponseShouldHaveTheFollowingDetails(DataTable expectedData) {
+    @Then("the client response should have the following details:")
+    public void theClientResponseShouldHaveTheFollowingDetails(DataTable expectedData) {
         logger.info("the response should have the following details:" + expectedData);
 
         client = clientRequest.getClientEntity(response);

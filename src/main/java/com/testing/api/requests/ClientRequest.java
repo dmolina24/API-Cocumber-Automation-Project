@@ -29,7 +29,7 @@ public class ClientRequest extends BaseRequest {
     }
 
     public Response getClient(String clientId) {
-        endpoint = "";
+        endpoint = String.format(Constants.URL_WITH_PARAM, Constants.CLIENTS_PATH, clientId);
         return requestGet(endpoint, createBaseHeaders());
     }
 
@@ -39,12 +39,12 @@ public class ClientRequest extends BaseRequest {
     }
 
     public Response updateClient(Client client, String clientId) {
-        endpoint = "";
+        endpoint = String.format(Constants.URL_WITH_PARAM, Constants.CLIENTS_PATH, clientId);
         return requestPut(endpoint, createBaseHeaders(), client);
     }
 
     public Response deleteClient(String clientId) {
-        endpoint = "";
+        endpoint = String.format(Constants.URL_WITH_PARAM, Constants.CLIENTS_PATH, clientId);
         return requestDelete(endpoint, createBaseHeaders());
     }
 
@@ -65,12 +65,11 @@ public class ClientRequest extends BaseRequest {
     public List<Response> createDefaultsClients(){
         JsonFileReader jsonFile = new JsonFileReader();
         List<Client> clients = jsonFile.getClientsByJson(Constants.DEFAULT_CLIENT_FILE_PATH);
-        return clients.parallelStream().map(this::createClient).collect(Collectors.toList());
+        return clients.stream().map(this::createClient).collect(Collectors.toList());
     }
 
     public Client getClientEntity(String clientJson) {
         Gson gson = new Gson();
         return gson.fromJson(clientJson, Client.class);
     }
-
 }

@@ -3,6 +3,7 @@ package com.testing.api.utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.testing.api.models.Client;
+import com.testing.api.models.Resource;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -41,5 +42,17 @@ public class JsonFileReader {
             e.printStackTrace();
         }
         return clients;
+    }
+
+    public List<Resource> getResourcesByJson(String jsonFileName){
+        List<Resource> resources =  new ArrayList<>();
+        try (Reader reader = new FileReader(jsonFileName)) {
+            Gson gson = new Gson();
+            Type resourceListType = new TypeToken<List<Resource>>() {}.getType();
+            resources = gson.fromJson(reader, resourceListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resources;
     }
 }

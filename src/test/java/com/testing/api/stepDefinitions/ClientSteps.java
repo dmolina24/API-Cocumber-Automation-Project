@@ -39,7 +39,7 @@ public class ClientSteps extends BaseSteps{
 
     @Given("I have a client with the following details:")
     public void iHaveAClientWithTheFollowingDetails(DataTable clientData) {
-        logger.info("I have a client with the following details:" + clientData);
+        //logger.info("I have a client with the following details:" + clientData);
 
         Map<String, String > clientDataMap = clientData.asMaps().get(0);
 
@@ -52,7 +52,7 @@ public class ClientSteps extends BaseSteps{
                         .phone(clientDataMap.get("Phone"))
                         .build();
 
-        logger.info("Client mapped: " + client);
+        //logger.info("Client mapped: " + client);
     }
 
     @When("I retrieve the details of the client with ID {string}")
@@ -71,7 +71,8 @@ public class ClientSteps extends BaseSteps{
 
     @When("I send a POST request to create a client")
     public void iSendAPOSTRequestToCreateAClient() {
-        logger.info("I send a POST request to create a client");
+        //logger.info("I send a POST request to create a client");
+        response = clientRequest.createClient(client);
     }
 
     @When("I send a DELETE request to delete the client with ID {string}")

@@ -1,5 +1,6 @@
 package com.testing.api.requests;
 import com.google.gson.Gson;
+import com.testing.api.models.Client;
 import com.testing.api.models.Resource;
 import com.testing.api.utils.Constants;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -22,8 +23,8 @@ public class ResourceRequest extends BaseRequest{
         return  requestGet(endpoint, createBaseHeaders());
     }
 
-    public Response updateResource(Resource resource){
-        endpoint = "";
+    public Response updateResource(Resource resource, String resourceId){
+        endpoint = String.format(Constants.URL, Constants.RESOURCES_PATH);
         return  requestPut(endpoint, createBaseHeaders(), resource);
     }
 
@@ -34,6 +35,14 @@ public class ResourceRequest extends BaseRequest{
 
     public List<Resource> getResourcesEntity(@NotNull Response response){
         JsonPath jsonPath = response.jsonPath();
-        return jsonPath.getList("", Resource.class);
+        try{
+            List<Resource> list = jsonPath.getList("", Resource.class);
+            return list;
+        }catch (Exception e){
+            System.out.println("exception" + e.toString());
+            return null;
+        }
     }
+
+
 }

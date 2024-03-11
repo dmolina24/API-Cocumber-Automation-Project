@@ -21,7 +21,7 @@
       "tags": {
         "type": "string"
       },
-      "is_active": {
+      "isActive": {
         "type": "boolean"
       },
       "id": {

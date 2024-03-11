@@ -19,12 +19,12 @@ Feature: Client testing CRUD
     @smoke
     Scenario: Create a new client
         Given I have a client with the following details:
-            | Name   | LastName   | Country   | City   | Email            | Phone          |
-            | <name> | <lastName> | <country> | <city> | <email@email.com> | <123-456-7890> |
+            | Name   | LastName   | Country     | City   | Email             | Phone          |
+            | Pedro  | Picapiedra | Nunca Jamas | Narnia | pedro@gmail.com   | 123-456-7890   |
         When I send a POST request to create a client
         Then the response should have a status code of 201
         And the response should include the details of the created client
-        And validates the response with client list JSON schema
+        And validates the response with client JSON schema
 
     @smoke
     Scenario: Update the last resource
@@ -39,7 +39,7 @@ Feature: Client testing CRUD
             "price": 99.99,
             "description": "description",
             "tags": "NewTag",
-            "Is_active": True
+            "is_active": True
         }
         """
         Then the response should have a status code of 200

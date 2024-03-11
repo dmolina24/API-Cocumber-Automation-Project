@@ -32,7 +32,7 @@ public class ClientRequest extends BaseRequest {
     }
 
     public Response createClient(Client client) {
-        endpoint = "";
+        endpoint = String.format(Constants.URL, Constants.CLIENTS_PATH);
         return requestPost(endpoint, createBaseHeaders(), client);
     }
 

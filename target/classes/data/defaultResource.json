@@ -5,5 +5,5 @@
   "price": 9.99,
   "description": "generic description",
   "tags": "generic tags",
-  "Is_active": true
+  "is_active": true
 }

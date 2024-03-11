@@ -19,8 +19,11 @@
     "tags": {
       "type": "string"
     },
-    "isActive": {
+    "active": {
       "type": "boolean"
+    },
+    "id": {
+      "type": "string"
     }
   },
   "required": [
@@ -30,6 +33,7 @@
     "price",
     "description",
     "tags",
-    "is_active"
+    "active",
+    "id"
   ]
 }

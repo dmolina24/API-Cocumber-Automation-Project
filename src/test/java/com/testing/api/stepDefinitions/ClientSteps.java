@@ -23,18 +23,16 @@ public class ClientSteps extends BaseSteps{
     public void thereAreRegisteredClientsInTheSystem() {
 
         response = clientRequest.getClients();
-        //logger.info(response.jsonPath().prettify());
-
+        logger.info(response.jsonPath().prettify());
         Assert.assertEquals(200, response.getStatusCode());
-
         List<Client> clientList = clientRequest.getClientsEntity(response);
+
         if(clientList.isEmpty()){
-            response = clientRequest.createDefaultClient();
-           // logger.info(response.statusCode());
-            Assert.assertEquals(201, response.getStatusCode());
+            List<Response> responses = clientRequest.createDefaultsClients();
+            logger.info(responses);
+            responses.parallelStream().forEach( response -> {Assert.assertEquals(201, response.getStatusCode());});
         }
     }
-
 
 
     @Given("I have a client with the following details:")

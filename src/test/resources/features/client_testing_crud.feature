@@ -8,7 +8,6 @@ Feature: Client testing CRUD
         Then the response should have a status code of 200
         And validates the response with client list JSON schema
 
-
     @smoke
     Scenario: Get the list of all resources
         Given there are registered resources in the system

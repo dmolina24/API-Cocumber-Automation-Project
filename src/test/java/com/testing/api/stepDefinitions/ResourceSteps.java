@@ -22,7 +22,7 @@ public class ResourceSteps extends BaseSteps {
     public void thereAreRegisteredResourcesInTheSystem(){
 
         response = resourceRequest.getResources();
-        //logger.info(response.jsonPath().prettify());
+        logger.info(response.jsonPath().prettify());
         Assert.assertEquals(200, response.getStatusCode());
     }
 

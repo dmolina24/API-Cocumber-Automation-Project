@@ -12,7 +12,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClientRequest extends BaseRequest {
     private String endpoint;
@@ -58,6 +60,12 @@ public class ClientRequest extends BaseRequest {
     public Response createDefaultClient() {
         JsonFileReader jsonFile = new JsonFileReader();
         return this.createClient(jsonFile.getClientByJson(Constants.DEFAULT_CLIENT_FILE_PATH));
+    }
+
+    public List<Response> createDefaultsClients(){
+        JsonFileReader jsonFile = new JsonFileReader();
+        List<Client> clients = jsonFile.getClientsByJson(Constants.DEFAULT_CLIENT_FILE_PATH);
+        return clients.parallelStream().map(this::createClient).collect(Collectors.toList());
     }
 
     public Client getClientEntity(String clientJson) {

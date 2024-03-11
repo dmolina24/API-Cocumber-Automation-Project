@@ -47,7 +47,7 @@ This project utilizes Cucumber and Java to perform CRUD operations on client res
 ### Tags
 - **@smoke**: Denotes scenarios that are part of smoke testing.
 
-Feel free to expand this README as the project evolves. Happy testing! 🚀
+Happy testing! 🚀
 
 
 
